@@ -29,6 +29,44 @@
             // Yes, A Class Can Implement Multiple Interfaces.
 
             #endregion
+
+            #region Part 02 — Practical
+
+            DeliveryAddress addr1 = new DeliveryAddress("Cairo" , "Main St", 123);
+            DeliveryAddress addr2 = new DeliveryAddress("Giza" , "Elharam" , 456);
+            DeliveryAddress addr3 = new DeliveryAddress("Berlin", "Main St", 33);
+
+            StandardShipment std = new StandardShipment("SH001", "Laptop", 3m, 80m, addr1);
+            ExpressShipment exp = new ExpressShipment("SH002", "Mobile Phone", 2m, 60m, addr2, 30m);
+            InternationalShipment intl = new InternationalShipment("SH003", "Television", 8m, 120m, addr3, "Germany", 100m);
+
+            DeliveryCenter center = new DeliveryCenter("Giza");
+            center.AddShipment(std);
+            center.AddShipment(exp);
+            center.AddShipment(intl);
+
+
+            center.PrintAllShipments();
+
+       
+            center.PrintTrackingStatuses();
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Insurance");
+            Console.WriteLine($"Standard Shipment Insurance : {std.CalculateInsurance():0.00} EGP");
+            Console.WriteLine($"Express Shipment Insurance : {exp.CalculateInsurance():0.00} EGP");
+            Console.WriteLine($"International Shipment Insurance : {intl.CalculateInsurance():0.00} EGP");
+
+            ITrackable[] trackables = new ITrackable[] { std, exp, intl };
+
+ 
+            IInsurable[] insurables = new IInsurable[] { std, exp, intl };
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine("Interface Polymorphism Demonstrated Successfully.");
         }
+
+            #endregion
+    
     }
 }
